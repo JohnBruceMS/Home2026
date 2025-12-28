@@ -130,3 +130,72 @@
       state: 'on'
   icon: mdi:lightbulb-night-outline
   metadata: {}
+
+# Patio Lighting Scenes
+- id: 'patio_evening'
+  name: Patio Florida
+  entities:
+    switch.patio_pathway_lights:
+      state: 'on'
+    light.hue_color_lamp_1:
+      state: 'on'
+      brightness: 200
+      xy_color: [0.6, 0.4]  # Deep orange in xy
+    light.bedroom1:
+      state: 'on'  
+      brightness: 200
+      xy_color: [0.6, 0.4]  # Deep orange in xy
+    light.hue_outdoor_wall_1:
+      state: 'off'  # Flood off
+  icon: mdi:weather-sunset
+
+- id: 'patio_bright'
+  name: Patio Bright  
+  entities:
+    switch.patio_pathway_lights:
+      state: 'on'
+    light.hue_color_lamp_1:
+      state: 'on'
+      brightness: 255
+      xy_color: [0.32, 0.33]  # Pure white in xy
+    light.bedroom1:
+      state: 'on'
+      brightness: 255  
+      xy_color: [0.32, 0.33]  # Pure white in xy
+    light.hue_outdoor_wall_1:
+      state: 'on'
+      brightness: 255
+      xy_color: [0.32, 0.33]  # Pure white in xy
+  icon: mdi:lightbulb-on
+
+- id: 'patio_dim'
+  name: Patio Dim
+  entities:
+    switch.patio_pathway_lights:
+      state: 'on' 
+    light.hue_color_lamp_1:
+      state: 'on'
+      brightness: 80
+      color_temp: 450
+    light.bedroom1:
+      state: 'on'
+      brightness: 80
+      color_temp: 450  
+    light.hue_outdoor_wall_1:
+      state: 'on'
+      brightness: 60
+      color_temp: 450
+  icon: mdi:lightbulb-night
+
+- id: 'patio_off'
+  name: Patio Off
+  entities:
+    switch.patio_pathway_lights:
+      state: 'off'
+    light.hue_color_lamp_1:
+      state: 'off'
+    light.bedroom1:
+      state: 'off'
+    light.hue_outdoor_wall_1:
+      state: 'off'
+  icon: mdi:lightbulb-off

@@ -48,13 +48,10 @@
   mode: single
 - id: '1624721071404'
   alias: Florida Mood Patio
-  description: ''
+  description: 'Button 4: Net Radio activation'
   trigger:
-  - device_id: 0ee72b34ea5925505a8bb0e49133835d
-    domain: hue
-    platform: device
-    type: remote_button_short_press
-    subtype: button_4
+  - platform: state
+    entity_id: event.hall_switch_button_4
   condition:
   - condition: time
     after: 07:00
@@ -63,6 +60,18 @@
   - service: media_player.select_source
     data:
       source: Net Radio
+  mode: single
+- id: '1735444800000'
+  alias: Patio Bright Scene
+  description: 'Button 3: Activate bright full lighting'
+  trigger:
+  - platform: state
+    entity_id: event.hall_switch_button_3
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.patio_bright
   mode: single
 - id: '1625582030181'
   alias: Office Light On
@@ -139,36 +148,28 @@
         brightness_pct: 25
   mode: single
 - id: '1632860926294'
-  alias: Patio_Lights_On
-  description: ''
+  alias: Patio Florida Scene
+  description: 'Button 2: Deep orange Florida colors, flood off, pathway on'
   trigger:
-  - device_id: 0ee72b34ea5925505a8bb0e49133835d
-    domain: hue
-    platform: device
-    type: remote_button_short_press
-    subtype: button_2
+  - platform: state
+    entity_id: event.hall_switch_button_2
   condition: []
   action:
-  - type: turn_on
-    device_id: 25b3177393fcf1d076742724c98ae937
-    entity_id: switch.patio_pathway_lights
-    domain: switch
+  - service: scene.turn_on
+    target:
+      entity_id: scene.patio_evening
   mode: single
 - id: '1632861074337'
-  alias: Patio_Lights_off
-  description: ''
+  alias: Patio Lights Off
+  description: 'Button 1: Turn off all patio lights'
   trigger:
-  - device_id: 0ee72b34ea5925505a8bb0e49133835d
-    domain: hue
-    platform: device
-    type: remote_button_short_press
-    subtype: button_1
+  - platform: state
+    entity_id: event.hall_switch_button_1
   condition: []
   action:
-  - type: turn_off
-    device_id: 25b3177393fcf1d076742724c98ae937
-    entity_id: switch.patio_pathway_lights
-    domain: switch
+  - service: scene.turn_on
+    target:
+      entity_id: scene.patio_off
   mode: single
 - id: '1633755497702'
   alias: Outside Lights
@@ -205,29 +206,27 @@
     domain: switch
   mode: single
 - id: '1759704238755'
-  alias: Pathway lights sunset
-  description: ''
+  alias: Patio lights sunset
+  description: 'Turn on all patio lights 15 minutes before sunset'
   triggers:
   - trigger: sun
     event: sunset
     offset: -00:15:00
   conditions: []
   actions:
-  - type: turn_on
-    device_id: d372afa5b376b539a31496fcb518c33f
-    entity_id: b4c068bdb447c26b300433702e13076f
-    domain: switch
+  - service: homeassistant.turn_on
+    target:
+      entity_id: group.patio_lights
   mode: single
 - id: '1759704308061'
-  alias: Turn off pathway
-  description: ''
+  alias: Turn off patio lights
+  description: 'Turn off all patio lights at 11:30 PM'
   triggers:
   - trigger: time
     at: '23:30:00'
   conditions: []
   actions:
-  - type: turn_off
-    device_id: d372afa5b376b539a31496fcb518c33f
-    entity_id: b4c068bdb447c26b300433702e13076f
-    domain: switch
+  - service: homeassistant.turn_off
+    target:
+      entity_id: group.patio_lights
   mode: single
