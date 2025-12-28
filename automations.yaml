@@ -1,0 +1,233 @@
+- id: '1624577180319'
+  alias: Office light off
+  description: ''
+  trigger:
+  - type: not_occupied
+    platform: device
+    device_id: 156202b790898fe051ab2f6fbc37b507
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: aaccd7e95b10b07509a90d9bfb6230f2
+    entity_id: light.office_spot_lights
+    domain: light
+  - type: turn_off
+    device_id: 429e3ba982e2ac9a10305de4f60f458a
+    entity_id: light.office_stand
+    domain: light
+  - type: turn_off
+    device_id: 54a28a8905b8281c561cff5a9f64667c
+    entity_id: light.wall
+    domain: light
+  mode: single
+- id: '1624577423967'
+  alias: Humid
+  description: ''
+  trigger:
+  - platform: time_pattern
+    hours: '4'
+  condition:
+  - type: is_humidity
+    condition: device
+    device_id: 67911f3a0dd96a6d383912dcb740472f
+    entity_id: sensor.lumi_lumi_weather_humidity
+    domain: sensor
+    above: 55
+  action:
+  - service: notify.mobile_app_sm_n986u
+    data:
+      message: 'Humid at bookshelf '
+      title: Humid
+  mode: single
+- id: '1624721071404'
+  alias: Florida Mood Patio
+  description: ''
+  trigger:
+  - device_id: 0ee72b34ea5925505a8bb0e49133835d
+    domain: hue
+    platform: device
+    type: remote_button_short_press
+    subtype: button_4
+  condition:
+  - condition: time
+    after: 07:00
+    before: '23:00'
+  action:
+  - service: media_player.select_source
+    data:
+      source: Net Radio
+  mode: single
+- id: '1625582030181'
+  alias: Office Light On
+  description: ''
+  trigger:
+  - type: occupied
+    platform: device
+    device_id: 156202b790898fe051ab2f6fbc37b507
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: aaccd7e95b10b07509a90d9bfb6230f2
+    entity_id: light.office_spot_lights
+    domain: light
+  action:
+  - choose:
+    - conditions:
+      - condition: time
+        before: '19:00:00'
+        after: 03:00:00
+        weekday:
+        - sat
+        - fri
+        - thu
+        - wed
+        - tue
+        - mon
+        - sun
+      sequence:
+      - type: turn_on
+        device_id: aaccd7e95b10b07509a90d9bfb6230f2
+        entity_id: light.office_spot_lights
+        domain: light
+        brightness_pct: 75
+      - type: turn_on
+        device_id: 429e3ba982e2ac9a10305de4f60f458a
+        entity_id: light.office_stand
+        domain: light
+        brightness_pct: 100
+      - type: turn_on
+        device_id: 54a28a8905b8281c561cff5a9f64667c
+        entity_id: light.wall
+        domain: light
+        brightness_pct: 100
+    - conditions:
+      - condition: time
+        after: '19:00:00'
+        before: 03:00:00
+        weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
+      sequence:
+      - type: turn_on
+        device_id: aaccd7e95b10b07509a90d9bfb6230f2
+        entity_id: light.office_spot_lights
+        domain: light
+        brightness_pct: 15
+      - type: turn_on
+        device_id: 429e3ba982e2ac9a10305de4f60f458a
+        entity_id: light.office_stand
+        domain: light
+        brightness_pct: 25
+      - type: turn_on
+        device_id: 54a28a8905b8281c561cff5a9f64667c
+        entity_id: light.wall
+        domain: light
+        brightness_pct: 25
+  mode: single
+- id: '1632860926294'
+  alias: Patio_Lights_On
+  description: ''
+  trigger:
+  - device_id: 0ee72b34ea5925505a8bb0e49133835d
+    domain: hue
+    platform: device
+    type: remote_button_short_press
+    subtype: button_2
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 25b3177393fcf1d076742724c98ae937
+    entity_id: switch.patio_pathway_lights
+    domain: switch
+  mode: single
+- id: '1632861074337'
+  alias: Patio_Lights_off
+  description: ''
+  trigger:
+  - device_id: 0ee72b34ea5925505a8bb0e49133835d
+    domain: hue
+    platform: device
+    type: remote_button_short_press
+    subtype: button_1
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 25b3177393fcf1d076742724c98ae937
+    entity_id: switch.patio_pathway_lights
+    domain: switch
+  mode: single
+- id: '1633755497702'
+  alias: Outside Lights
+  description: ''
+  triggers:
+  - type: motion
+    device_id: 0b2991c5eb076515d72a7cff2f409393
+    entity_id: binary_sensor.front_door_motion
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: '19:00:00'
+    before: 05:00:00
+  - condition: device
+    type: is_off
+    device_id: d56cda0b5b53dfdc3ae8d054678b2b88
+    entity_id: light.front_door_left
+    domain: light
+  actions:
+  - type: turn_on
+    device_id: d56cda0b5b53dfdc3ae8d054678b2b88
+    entity_id: light.front_door_left
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 743ac58ef12e5fc4d34e4bc1f3b0f5b3
+    entity_id: light.front_door_right
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: d372afa5b376b539a31496fcb518c33f
+    entity_id: b4c068bdb447c26b300433702e13076f
+    domain: switch
+  mode: single
+- id: '1759704238755'
+  alias: Pathway lights sunset
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: -00:15:00
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: d372afa5b376b539a31496fcb518c33f
+    entity_id: b4c068bdb447c26b300433702e13076f
+    domain: switch
+  mode: single
+- id: '1759704308061'
+  alias: Turn off pathway
+  description: ''
+  triggers:
+  - trigger: time
+    at: '23:30:00'
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: d372afa5b376b539a31496fcb518c33f
+    entity_id: b4c068bdb447c26b300433702e13076f
+    domain: switch
+  mode: single

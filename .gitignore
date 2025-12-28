@@ -1,0 +1,41 @@
+# Home Assistant sensitive files
+secrets.yaml
+known_devices.yaml
+ip_bans.yaml
+*.log
+*.log.*
+*.db
+*.db-*
+.uuid
+.HA_VERSION
+home-assistant.log*
+
+# Home Assistant directories that shouldn't be tracked
+.storage/
+.cloud/
+deps/
+tts/
+__pycache__/
+*.pyc
+*.pyo
+
+# Backup directories
+.backups/
+*.backup
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+
+# Custom sensitive files (add your own)
+# my-sensitive-file.yaml

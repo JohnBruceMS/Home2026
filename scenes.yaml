@@ -1,0 +1,132 @@
+- id: '1738020307628'
+  name: Office Work
+  entities:
+    light.office:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 196
+      color_temp_kelvin: 3460
+      color_temp: 289
+      hs_color:
+      - 27.214
+      - 45.65
+      rgb_color:
+      - 255
+      - 191
+      - 139
+      xy_color:
+      - 0.456
+      - 0.374
+      is_hue_group: true
+      hue_scenes:
+      - Nighttime
+      - Read
+      - Relax
+      - Spring blossom
+      - Arctic aurora
+      - Savanna sunset
+      - Concentrate
+      - Dimmed
+      - Nightlight
+      - Tropical twilight
+      - Bright
+      - Energize
+      hue_type: room
+      lights:
+      - office stand
+      - Wall
+      entity_id:
+      - light.wall
+      - light.office_stand
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Office
+      supported_features: 40
+      state: 'on'
+    light.office_spot_lights:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 255
+      device_id: '5'
+      zone_id: '3'
+      icon: mdi:track-light
+      friendly_name: Office Spot Lights
+      supported_features: 32
+      state: 'on'
+  icon: mdi:lightbulb-on-20
+  metadata:
+    light.office:
+      entity_only: true
+    light.office_spot_lights:
+      entity_only: true
+- id: '1738020544862'
+  name: Office Chill
+  entities:
+    light.office:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 99
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      - 9.231
+      - 66.275
+      rgb_color:
+      - 255
+      - 112
+      - 86
+      xy_color:
+      - 0.589
+      - 0.329
+      is_hue_group: true
+      hue_scenes:
+      - Nighttime
+      - Read
+      - Relax
+      - Spring blossom
+      - Arctic aurora
+      - Savanna sunset
+      - Concentrate
+      - Dimmed
+      - Nightlight
+      - Tropical twilight
+      - Bright
+      - Energize
+      hue_type: room
+      lights:
+      - office stand
+      - Wall
+      entity_id:
+      - light.wall
+      - light.office_stand
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Office
+      supported_features: 40
+      state: 'on'
+    light.office_spot_lights:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 28
+      device_id: '5'
+      zone_id: '3'
+      icon: mdi:track-light
+      friendly_name: Office Spot Lights
+      supported_features: 32
+      state: 'on'
+  icon: mdi:lightbulb-night-outline
+  metadata: {}

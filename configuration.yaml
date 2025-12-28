@@ -1,0 +1,25 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+media_player:
+  - platform: yamaha_musiccast
+    host: 192.168.1.158
+    port: 5005
+# Example configuration.yaml entry
+sensor:
+  - platform: pushbullet
+    api_key: o.yKWJ3Lh9UXVhiWCyu5BKZvPDjHZkze3q
+    monitored_conditions:
+      - body
+
+    
