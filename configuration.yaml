@@ -2,6 +2,9 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# HACS (Home Assistant Community Store)
+hacs:
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -15,11 +18,8 @@ media_player:
   - platform: yamaha_musiccast
     host: 192.168.1.158
     port: 5005
-# Example configuration.yaml entry
-sensor:
-  - platform: pushbullet
-    api_key: o.yKWJ3Lh9UXVhiWCyu5BKZvPDjHZkze3q
-    monitored_conditions:
-      - body
-
-    
+    name: "Living Room MusicCast"
+  - platform: yamaha_musiccast
+    host: 192.168.1.208
+    port: 5005
+    name: "TV MusicCast"
