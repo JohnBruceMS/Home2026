@@ -2,9 +2,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# HACS (Home Assistant Community Store)
-hacs:
-
 # Text to speech
 tts:
   - platform: google_translate

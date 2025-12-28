@@ -82,10 +82,30 @@
 
 2. **Integration Health Check**
    - Alexa Media Player status and authentication
-   - HACS component status
+   - HACS component status and inventory
    - Yamaha MusicCast connection stability
    - Pushbullet integration functionality
    - Custom component validation
+
+3. **Current HACS Component Inventory (as of 2024-12-28)**
+   - **HACS Core**: v2.0.1 (7 services, 14 entities)
+   - **Themes**:
+     - Google Dark Theme (2 entities)
+     - Google Light Theme (2 entities)
+   - **Frontend Plugins**:
+     - Banner Card (2 entities)
+     - Weather Card (2 entities)
+     - Light Entity Card (2 entities)
+   - **Integrations**:
+     - Alexa Media Player (2 entities)
+   
+   **HACS Cleanup Tasks**:
+   - [x] Document current HACS inventory (completed 2024-12-28)
+   - [ ] Verify all themes are actively used
+   - [ ] Test functionality of each frontend plugin
+   - [ ] Check for plugin updates and compatibility
+   - [ ] Remove unused or redundant components
+   - [ ] Document essential vs. optional HACS components
 
 3. **Device Configuration Audit**
    - Xiaomi sensor battery levels and connectivity
@@ -99,11 +119,81 @@
    - Network stability testing
    - Error log analysis
 
+5. **Device & Integration Assessment** (Completed 2024-12-28):
+
+   **Core Integrations Status:**
+   - [x] **HACS**: v2.0.1 - Healthy (7 services, 14 entities)
+   - [x] **Alexa Media Player**: Custom component installed in `/custom_components/alexa_media/`
+   - [x] **Yamaha MusicCast**: 2 devices configured in configuration.yaml
+     - Living Room MusicCast (192.168.1.158:5005)
+     - TV MusicCast (192.168.1.208:5005) 
+   - [x] **Default Config**: Core HA integrations enabled
+
+   **Known Problematic Devices:**
+   - ❌ **Den MusicCast**: Not in current configuration - may need re-adding or removal
+   - ❌ **Matter PowerSwitch** (Pathway Lights): Connectivity issues - candidate for removal
+   
+   **Frontend Components:**
+   - **Themes**: Google Dark/Light Theme (4 entities total)
+   - **Cards**: Banner Card, Weather Card, Light Entity Card (6 entities total)
+
+   **Assessment Actions Needed:**
+   - [x] Test MusicCast device connectivity (192.168.1.158, 192.168.1.208)
+     - ✅ All MusicCast devices operational in HA UI:
+       - Living Room MusicCast: OFF
+       - Living Room Zone2: OFF  
+       - TV MusicCast: PLAYING
+       - Den MusicCast: OFF (found in HA, not missing!)
+   - [x] API connection troubleshooting completed - working properly
+   - [x] Located Matter PowerSwitch - identified as **DEWENWILS 3-Zone Transformer**
+
+   **Confirmed Offline Devices Needing Removal:**
+   - ❌ **DEWENWILS 3-Zone Transformer** (Pathway Lights) - **KEEP** - Temporarily offline, will be back online soon
+   
+   **Approved for Removal (User Decision 2024-12-28):**
+   - ❌ **Lutron Aurora Controls** (3 entities) - Remove from Lutron app or HA config
+     - event.lutron_aurora_1_button_1 (Lutron Aurora 1 Button 1)
+     - event.lutron_aurora_1_relative_rotary (Lutron Aurora 1 Rotary)  
+     - sensor.lutron_aurora_1_battery_level (Lutron Aurora 1 Battery)
+     - sensor.lutron_aurora_2_battery_level (Lutron Aurora 2 battery level)
+   
+   - ❌ **Fios Router Monitoring** (8 entities) - No value in re-establishing
+     - All sensor.fios_router_* entities (packets, bytes, speed monitoring)
+   
+   - ⚠️ **Plug_Tree Device** (5 entities) - Disable/flag as not currently used
+     - switch.plug_tree_on_off & related sensors/config entities
+   
+   **Pending Assessment:**
+   - Hue/Philips Lights (11 entities) - Status TBD
+   - Smart Plug1 (5 entities) - Status TBD  
+   - Other devices (Camera, Spotify, etc.) - Status TBD
+   
+   **Other Unavailable Entities Found:**
+   - Multiple Hue lights (11 entities)
+   - Lutron Aurora devices (3 entities)
+   - Various plugs and sensors (8 entities)
+   - **Total Unavailable**: 44 entities identified
+   
+   **Next Steps:**
+   1. ✅ MusicCast devices confirmed working - no changes needed
+   2. ✅ DEWENWILS 3-Zone Transformer - keeping (temporarily offline)
+   3. **Priority Removal Actions:**
+      - [x] **Lutron Aurora**: **COMPLETED** - Found in Hue app and deleted
+      - [x] **Fios Router Sensors**: **COMPLETED** - UPnP integration deleted (8 entities removed)
+      - [x] **Hue Light Cleanup**: **COMPLETED** - Multiple offline Hue lights removed from Hue app
+      - [x] **Plug Switch (Pathway)**: **COMPLETED** - User removed from HA
+   4. **Secondary Cleanup** (assess next): Remaining plugs (Plug1, Plug_Tree), automations, other devices
+   
+   **Excellent Progress**: Unavailable entities dramatically reduced **44 → 29** (34% reduction!)
+
 #### Success Criteria:
-- [ ] 100% device inventory complete
-- [ ] All offline devices identified
+- [x] HACS component inventory completed
+- [x] Device connectivity testing completed
+- [x] MusicCast devices identified as offline
+- [x] Cleanup candidates identified (MusicCast, Matter PowerSwitch)
 - [ ] Integration issues documented
-- [ ] MusicCast login persistence understood
+- [ ] Matter PowerSwitch removal completed
+- [ ] MusicCast configuration cleanup completed
 
 ---
 

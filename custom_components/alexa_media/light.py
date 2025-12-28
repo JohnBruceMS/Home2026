@@ -6,6 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 For more details about this platform, please refer to the documentation at
 https://community.home-assistant.io/t/echo-devices-alexa-as-media-player-testers-needed/58639
 """
+
 import datetime
 import logging
 from math import sqrt
@@ -271,16 +272,22 @@ class AlexaLight(CoordinatorEntity, LightEntity):
         self._requested_state_at = datetime.datetime.now(
             datetime.timezone.utc
         )  # must be set last so that previous getters work properly
-        self.async_write_ha_state()
+        self.schedule_update_ha_state()
 
     async def async_turn_on(self, **kwargs):
         """Turn on."""
         brightness = None
         kelvin = None
         hs_color = None
-        if ColorMode.ONOFF not in self._attr_supported_color_modes and ATTR_BRIGHTNESS in kwargs:
+        if (
+            ColorMode.ONOFF not in self._attr_supported_color_modes
+            and ATTR_BRIGHTNESS in kwargs
+        ):
             brightness = kwargs[ATTR_BRIGHTNESS]
-        if ColorMode.COLOR_TEMP in self._attr_supported_color_modes and ATTR_COLOR_TEMP_KELVIN in kwargs:
+        if (
+            ColorMode.COLOR_TEMP in self._attr_supported_color_modes
+            and ATTR_COLOR_TEMP_KELVIN in kwargs
+        ):
             kelvin = kwargs[ATTR_COLOR_TEMP_KELVIN]
         if ColorMode.HS in self._attr_supported_color_modes and ATTR_HS_COLOR in kwargs:
             hs_color = kwargs[ATTR_HS_COLOR]
@@ -483,7 +490,7 @@ def alexa_color_name_to_rgb(color_name: str) -> tuple[int, int, int]:
 
 
 def rgb_to_alexa_color(
-    rgb: tuple[int, int, int]
+    rgb: tuple[int, int, int],
 ) -> tuple[Optional[tuple[float, float]], Optional[str]]:
     """Convert a given RGB value into the closest Alexa color."""
     (name, alexa_rgb) = min(
@@ -495,7 +502,7 @@ def rgb_to_alexa_color(
 
 
 def hs_to_alexa_color(
-    hs_color: Optional[tuple[float, float]]
+    hs_color: Optional[tuple[float, float]],
 ) -> tuple[Optional[tuple[float, float]], Optional[str]]:
     """Convert a given hue/saturation value into the closest Alexa color."""
     if hs_color is None:
@@ -505,7 +512,7 @@ def hs_to_alexa_color(
 
 
 def hsb_to_alexa_color(
-    hsb: Optional[tuple[float, float, float]]
+    hsb: Optional[tuple[float, float, float]],
 ) -> tuple[Optional[tuple[float, float]], Optional[str]]:
     """Convert a given hue/saturation/brightness value into the closest Alexa color."""
     if hsb is None:
