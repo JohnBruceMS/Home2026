@@ -130,9 +130,7 @@
       state: 'on'
   icon: mdi:lightbulb-night-outline
   metadata: {}
-
-# Patio Lighting Scenes
-- id: 'patio_evening'
+- id: patio_evening
   name: Patio Florida
   entities:
     switch.patio_pathway_lights:
@@ -140,39 +138,117 @@
     light.hue_color_lamp_1:
       state: 'on'
       brightness: 200
-      xy_color: [0.6, 0.4]  # Deep orange in xy
+      xy_color:
+      - 0.6
+      - 0.4
     light.bedroom1:
-      state: 'on'  
+      state: 'on'
       brightness: 200
-      xy_color: [0.6, 0.4]  # Deep orange in xy
+      xy_color:
+      - 0.6
+      - 0.4
     light.hue_outdoor_wall_1:
-      state: 'off'  # Flood off
+      state: 'off'
   icon: mdi:weather-sunset
-
-- id: 'patio_bright'
-  name: Patio Bright  
+- id: patio_bright
+  name: Patio Bright
   entities:
-    switch.patio_pathway_lights:
-      state: 'on'
     light.hue_color_lamp_1:
-      state: 'on'
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - 'off'
+      - candle
+      - fire
+      - prism
+      - sparkle
+      - opal
+      - glisten
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect: 'off'
+      color_mode: xy
       brightness: 255
-      xy_color: [0.32, 0.33]  # Pure white in xy
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      - 165
+      - 1.569
+      rgb_color:
+      - 251
+      - 255
+      - 254
+      xy_color:
+      - 0.32
+      - 0.33
+      mode: normal
+      dynamics: none
+      friendly_name: Patio L
+      supported_features: 44
+      state: 'on'
     light.bedroom1:
-      state: 'on'
-      brightness: 255  
-      xy_color: [0.32, 0.33]  # Pure white in xy
-    light.hue_outdoor_wall_1:
-      state: 'on'
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
       brightness: 255
-      xy_color: [0.32, 0.33]  # Pure white in xy
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      - 165
+      - 1.569
+      rgb_color:
+      - 251
+      - 255
+      - 254
+      xy_color:
+      - 0.32
+      - 0.33
+      mode: normal
+      dynamics: none
+      friendly_name: Patio R
+      supported_features: 40
+      state: 'on'
+    light.hue_outdoor_wall_1:
+      effect_list:
+      - 'off'
+      - candle
+      supported_color_modes:
+      - brightness
+      effect: 'off'
+      color_mode: brightness
+      brightness: 255
+      mode: normal
+      dynamics: none
+      friendly_name: Patio Flood
+      supported_features: 44
+      state: 'on'
+    switch.dewenwils_3_zone_transformer_switch_1:
+      device_class: outlet
+      friendly_name: DEWENWILS 3 -Zone Transformer Switch (1)
+      state: unavailable
+    switch.dewenwils_3_zone_transformer_switch_2:
+      device_class: outlet
+      friendly_name: DEWENWILS 3 -Zone Transformer Switch (2)
+      state: unavailable
+    switch.dewenwils_3_zone_transformer_switch_3:
+      device_class: outlet
+      friendly_name: DEWENWILS 3 -Zone Transformer Switch (3)
+      state: unavailable
   icon: mdi:lightbulb-on
-
-- id: 'patio_dim'
+  metadata: {}
+- id: patio_dim
   name: Patio Dim
   entities:
     switch.patio_pathway_lights:
-      state: 'on' 
+      state: 'on'
     light.hue_color_lamp_1:
       state: 'on'
       brightness: 80
@@ -180,14 +256,13 @@
     light.bedroom1:
       state: 'on'
       brightness: 80
-      color_temp: 450  
+      color_temp: 450
     light.hue_outdoor_wall_1:
       state: 'on'
       brightness: 60
       color_temp: 450
   icon: mdi:lightbulb-night
-
-- id: 'patio_off'
+- id: patio_off
   name: Patio Off
   entities:
     switch.patio_pathway_lights:
