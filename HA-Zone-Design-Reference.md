@@ -351,6 +351,29 @@ Use this template for implementing **2-3 remaining zones**:
 - **Voice compatibility**: Long scene names may be awkward for voice commands
 - **Automation complexity**: Multiple trigger types require careful testing
 
+### **🎯 OFFICE ZONE LESSONS LEARNED (2025-12-29)**
+
+**✅ What Worked Perfectly:**
+- **Scene-based automation**: Much cleaner than device-based logic
+- **2-mode system**: Work/Gaming covers all use cases, 3-4 modes were overcomplicated
+- **15-minute motion timeout**: Optimal balance - doesn't turn off during brief pauses
+- **Voice-friendly naming**: "office work mode" / "office gaming mode" work great with Alexa
+- **Dashboard integration**: Horizontal layout with scene buttons + individual device controls
+- **Git workflow**: Separate commits for scenes, automation, and dashboard changes
+
+**🔧 Critical Implementation Notes:**
+- **Always check sync direction**: Sync task was pulling old files instead of pushing new ones
+- **File deployment**: Copy files directly to Z: drive, don't rely on sync tasks
+- **Secret scanning**: Filter out .storage auth files, keep only dashboard/registry files
+- **Motion logic**: Only trigger when spot lights are OFF prevents conflicts
+- **Scene design**: Use actual use cases, not technical lighting combinations
+
+**⚠️ Pitfalls Avoided:**
+- **Complex time conditions**: Stick to simple 6am-6pm / 6pm-6am split
+- **Device IDs in automation**: Use entity IDs for better reliability
+- **Too many scenes**: 2-3 core scenes + off scene is perfect
+- **Nested automation**: Keep motion logic simple with choose/conditions
+
 ### **🔧 Best Practices**
 - **Test each layer independently** before combining
 - **Use consistent naming patterns** across zones
@@ -358,13 +381,68 @@ Use this template for implementing **2-3 remaining zones**:
 - **Keep scenes simple and focused** on specific use cases
 - **Always include an "all off" scene** for each zone
 - **Group automation by trigger type** for easier maintenance
+- **Deploy in phases**: Scenes → Dashboard → Automation → Stream Deck
+- **Validate live system**: Always verify changes are active before moving on
+
+---
+
+## **🚀 FUTURE ZONE IMPLEMENTATION PLAN**
+
+### **Next Priority Zones:**
+1. **Living Room Zone** 🎯 *[Next Target]*
+   - Entertainment center + ambient + accent lighting
+   - Motion + time-based + manual scene control
+   - Follow office 2-mode pattern: Day/Evening modes
+
+2. **Bedroom Zone** 
+   - Wake/sleep cycle automation + reading + security lighting
+   - Motion sensors for late-night navigation
+   - Dawn/dusk integration for natural rhythm
+
+3. **Kitchen Zone**
+   - Task + ambient + under-cabinet lighting
+   - Motion + time-based controls
+   - Cooking vs ambient modes
+
+### **🛠️ Implementation Template (Use for ALL Future Zones):**
+
+**Phase 1: Discovery & Planning**
+1. Device audit - inventory all lights, sensors, switches in zone
+2. Use case analysis - identify 2-3 primary lighting scenarios  
+3. Voice name testing - ensure scene names work well with Alexa
+4. Dashboard mockup - plan layout following patio/office pattern
+
+**Phase 2: Configuration Implementation**
+1. Create groups.yaml entries for zone
+2. Design 2-3 core scenes + off scene in scenes.yaml
+3. Test scenes manually through HA interface
+4. Implement dashboard integration with scene buttons + device controls
+
+**Phase 3: Automation & Deployment**
+1. Design motion automation following office pattern
+2. Test automation with parallel implementation first
+3. Deploy to live system: groups → scenes → dashboard → automation
+4. Validate each layer before proceeding to next
+
+**Phase 4: Integration & Refinement**
+1. Stream Deck integration (physical scene buttons)
+2. Voice command testing and refinement
+3. Documentation updates
+4. Integration with other zones/systems
+
+**🔑 SUCCESS METRICS:**
+- Scene names work naturally with voice commands
+- Motion automation triggers correct scenes based on time
+- Dashboard provides easy manual override
+- All configurations sync properly between dev/live systems
+- Documentation stays current for future maintenance
 
 ---
 
 ## **FUTURE ZONE TARGETS**
 
-1. **Office Zone** - ✅ *In Progress* - Desk lighting + ambient + spot lights + Stream Deck control
-2. **Living Room Zone** - Entertainment + ambient + task lighting  
+1. **Office Zone** - ✅ *COMPLETED & OPERATIONAL* - 2-mode motion system deployed
+2. **Living Room Zone** - 🎯 *Next Target* - Entertainment + ambient + task lighting  
 3. **Bedroom Zone** - Wake/sleep cycles + reading + security
 4. **Kitchen Zone** - Task + ambient + cabinet lighting
 
