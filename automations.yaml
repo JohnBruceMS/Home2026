@@ -62,8 +62,8 @@
       source: Net Radio
   mode: single
 - id: '1735444800000'
-  alias: Patio Bright Scene
-  description: 'Button 3: Activate bright full lighting'
+  alias: Patio Grill / Max Scene
+  description: 'Button 3: Activate max grilling brightness palette'
   trigger:
   - platform: state
     entity_id: event.hall_switch_button_3
@@ -71,7 +71,7 @@
   action:
   - service: scene.turn_on
     target:
-      entity_id: scene.patio_bright
+      entity_id: scene.patio_grill_max
   mode: single
 - id: '1625582030181'
   alias: Office Light On
@@ -148,8 +148,8 @@
         brightness_pct: 25
   mode: single
 - id: '1632860926294'
-  alias: Patio Florida Scene
-  description: 'Button 2: Deep orange Florida colors, flood off, pathway on'
+  alias: Patio Florida Dimmed Scene
+  description: 'Button 2: Turtle-safe amber, pathway on, flood off'
   trigger:
   - platform: state
     entity_id: event.hall_switch_button_2
@@ -157,10 +157,10 @@
   action:
   - service: scene.turn_on
     target:
-      entity_id: scene.patio_evening
+      entity_id: scene.patio_florida_dimmed
   mode: single
 - id: '1632861074337'
-  alias: Patio Lights Off
+  alias: Patio All Off Scene
   description: 'Button 1: Turn off all patio lights'
   trigger:
   - platform: state
@@ -169,7 +169,7 @@
   action:
   - service: scene.turn_on
     target:
-      entity_id: scene.patio_off
+      entity_id: scene.patio_all_off
   mode: single
 - id: '1633755497702'
   alias: Outside Lights
