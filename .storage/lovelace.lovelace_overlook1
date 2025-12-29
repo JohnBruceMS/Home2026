@@ -1,0 +1,322 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace_overlook1",
+  "data": {
+    "config": {
+      "title": "Overlook One",
+      "views": [
+        {
+          "title": "Lights",
+          "path": "lights",
+          "icon": "",
+          "panel": false,
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "light",
+                  "entity": "light.downstairs_hallway_lights",
+                  "name": "Downstairs"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.hue_color_lamp_1_3",
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Nightstand Left"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.hue_color_lamp_1_2",
+                  "name": "Nightstand Right"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "light",
+                  "entity": "light.living_room_main_lights",
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Mains"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.living_room_sconces",
+                  "name": "Sconces"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.dining_room_pendants",
+                  "name": "Dinning"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.living_room_accent_lights",
+                  "name": "Accents"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "light",
+                  "entity": "light.office_spot_lights",
+                  "name": "Office Track"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.office_stand",
+                  "name": "Office Stand"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.wall"
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "light.master_bedroom_sconces",
+                  "name": "Hallway",
+                  "show_state": false
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "light.dining_room_bar",
+                  "name": "Bar",
+                  "icon": "mdi:ceiling-light-outline"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "light.kitchen_main_lights",
+                  "name": "Kitchen"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "light.loft_main_lights",
+                  "name": "Loft",
+                  "show_state": false
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon": "mdi:post-lamp",
+                  "name": "Pathway",
+                  "entity": "switch.dewenwils_3_zone_transformer_switch_1"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.bedroom1",
+                  "name": "Patio Right",
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon": "mdi:coach-lamp"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.hue_color_lamp_1",
+                  "name": "Patio Right",
+                  "icon": "mdi:coach-lamp"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.hue_outdoor_wall_1",
+                  "icon": "mdi:light-flood-down"
+                }
+              ]
+            },
+            {
+              "shorten_cards": false,
+              "consolidate_entities": false,
+              "child_card": false,
+              "hide_header": false,
+              "show_header_icon": false,
+              "header": "",
+              "color_wheel": true,
+              "persist_features": false,
+              "brightness": true,
+              "color_temp": true,
+              "white_value": true,
+              "color_picker": true,
+              "speed": true,
+              "intensity": true,
+              "force_features": false,
+              "show_slider_percent": false,
+              "full_width_sliders": false,
+              "brightness_icon": "weather-sunny",
+              "white_icon": "file-word-box",
+              "temperature_icon": "thermometer",
+              "speed_icon": "speedometer",
+              "intensity_icon": "transit-connection-horizontal",
+              "type": "custom:light-entity-card",
+              "entity": "group.patio_color_lights"
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "switch.sengled_e1c_nb7_03e46b03_on_off",
+                  "icon": "mdi:toggle-switch",
+                  "icon_height": "50px"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "switch.plug_tree_on_off",
+                  "icon": "mdi:toggle-switch",
+                  "name": "Plug_Two"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "switch.patio_pathway_lights",
+                  "name": "Lutron Switch",
+                  "icon": "mdi:toggle-switch"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "scene.patio_normal"
+                },
+                {
+                  "entity": "scene.patio_grill_max"
+                },
+                {
+                  "entity": "scene.patio_florida_dimmed"
+                },
+                {
+                  "entity": "scene.patio_all_off"
+                },
+                {
+                  "entity": "scene.office_work_mode"
+                },
+                {
+                  "entity": "scene.office_gaming_mode"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "default_view",
+          "title": "Home",
+          "cards": [
+            {
+              "type": "gauge",
+              "entity": "sensor.lumi_lumi_weather_humidity",
+              "min": 0,
+              "max": 100,
+              "name": "Bathroom Humidity ",
+              "severity": {
+                "green": 0,
+                "yellow": 70,
+                "red": 80
+              }
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.lumi_lumi_weather_temperature"
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.living_room"
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.living_room_zone2"
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.den"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "scene.tv"
+              ],
+              "title": "Scene"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "sun.sun"
+              ],
+              "title": "Sun"
+            },
+            {
+              "type": "weather-forecast",
+              "entity": "weather.overlook",
+              "show_forecast": false
+            },
+            {
+              "type": "sensor",
+              "entity": "sensor.lumi_lumi_weather_3942f806_humidity",
+              "graph": "line"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "switch.sengled_e1c_nb7_03e46b03_on_off",
+                  "name": "Switch"
+                }
+              ],
+              "title": "Plug1"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

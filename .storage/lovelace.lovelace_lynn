@@ -1,0 +1,153 @@
+{
+    "version": 1,
+    "key": "lovelace.lovelace_lynn",
+    "data": {
+        "config": {
+            "title": "Lynns",
+            "views": [
+                {
+                    "path": "default_view",
+                    "title": "Downstairs",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "gauge",
+                            "entity": "sensor.lumi_lumi_weather_humidity",
+                            "min": 0,
+                            "max": 100,
+                            "name": "Bathroom Humidity",
+                            "severity": {
+                                "green": 0,
+                                "yellow": 70,
+                                "red": 80
+                            }
+                        },
+                        {
+                            "type": "light",
+                            "entity": "light.bedroom1",
+                            "name": "Bedroom Nightstand",
+                            "double_tap_action": {
+                                "action": "toggle"
+                            }
+                        },
+                        {
+                            "type": "weather-forecast",
+                            "entity": "weather.overlook",
+                            "secondary_info_attribute": "humidity"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "sun.sun"
+                            ],
+                            "title": "Sun"
+                        }
+                    ]
+                },
+                {
+                    "title": "Upstairs",
+                    "path": "upstairs",
+                    "panel": false,
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.living_room"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "light",
+                                            "entity": "light.living_room_main_lights",
+                                            "name": "Living Main Lights"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "light",
+                                    "entity": "light.living_room_accent_lights"
+                                },
+                                {
+                                    "type": "light",
+                                    "entity": "light.office_spot_lights",
+                                    "name": "Office Lights"
+                                },
+                                {
+                                    "type": "light",
+                                    "entity": "light.office_stand",
+                                    "name": "Office Stand"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.den"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "sensor.front_door_last_ding"
+                            ]
+                        },
+                        {
+                            "type": "picture-entity",
+                            "entity": "camera.front_door"
+                        }
+                    ]
+                },
+                {
+                    "title": "Patio",
+                    "path": "patio",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "picture-entity",
+                            "entity": "camera.front_door"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "binary_sensor.front_door_ding",
+                                "binary_sensor.front_door_motion",
+                                "sensor.front_door_last_activity",
+                                "sensor.front_door_last_ding",
+                                "sensor.front_door_last_motion",
+                                "sensor.front_door_volume"
+                            ],
+                            "title": "Patio"
+                        },
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.living_room_zone2"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    },
+                                    "entity": "light.front_door_right",
+                                    "name": "Patio Right"
+                                },
+                                {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    },
+                                    "entity": "light.front_door_left",
+                                    "name": "Patio Left"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

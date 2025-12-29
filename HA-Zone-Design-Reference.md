@@ -166,38 +166,29 @@ office_environment:
 | Scene ID | Voice Name | Use Case | Spot Lights | Desk Stand | Wall Light |
 |----------|------------|----------|-------------|------------|------------|
 | `office_off` | "Office Off" | Complete shutdown | OFF | OFF | OFF |
-| `office_work_mode` | "Office Work Mode" | Productive work | **100% primary** | 100% warm white | 100% warm white |
-| `office_gaming_mode` | "Office Gaming Mode" | Gaming ambiance | **OFF** | 70% **orange tint** | 70% **orange tint** |
-| `office_tv_mode` | "Office TV Mode" | TV watching | **OFF** | 50% **orange tint** | 50% **orange tint** |
+| `office_work_mode` | "Office Work Mode" | Productive work (6am-6pm) | **100% primary** | 100% warm white | 100% warm white |
+| `office_gaming_mode` | "Office Gaming Mode" | Gaming/entertainment (6pm-6am) | **OFF** | 70% **orange tint** | 70% **orange tint** |
 
-**Design Philosophy:**
-- **Work Mode**: Spot lights provide primary task lighting + Hue devices complement with warm bright
-- **Gaming/TV Modes**: No spot lights + Orange ambient lighting for entertainment
+**2-Mode System Design:**
+- **Work Mode (6am-6pm)**: Spot lights provide primary task lighting + Hue devices complement with warm bright
+- **Gaming Mode (6pm-6am)**: No spot lights + Orange ambient lighting for all entertainment (gaming, TV, reading)
 - **Voice Commands**: "Alexa, turn on office work mode" / "Alexa, activate office gaming mode"
 
-### **Layer 4: Automation** 📍*[automations.yaml - 🔄 NEEDS REDESIGN]*
+### **Layer 4: Automation** 📍*[automations.yaml - ✅ IMPLEMENTED]*
 
-**Current State**: Basic motion detection with time-based brightness (too complex)
+**NEW: 2-Mode Scene-Based Motion System (ACTIVE)**
 
-#### **Proposed Smart Motion Automation**
+#### **Smart Motion Automation - Simplified Design**
 **Time-Aware Scene Selection:**
 - **Work Hours (6am-6pm)** → Motion triggers `scene.office_work_mode`
-- **Entertainment Hours (6pm-6am)** → Motion triggers `scene.office_gaming_mode` 
-- **Late Night (11pm-6am)** → Motion triggers `scene.office_tv_mode` (minimal lighting)
-- **No Motion (20 min)** → `scene.office_off`
+- **Gaming Hours (6pm-6am)** → Motion triggers `scene.office_gaming_mode` 
+- **No Motion (15 min)** → `scene.office_off`
 
-**Simplified Automation Pattern:**
-```yaml
-# Replace complex existing automation with scene-based approach
-- alias: "Office Smart Motion"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
-      to: 'on'
-  action:
-    - choose:
-        # Work hours - full work lighting
-        - conditions:
+**Benefits:**
+- **Consistent**: Same lighting whether motion, voice, or dashboard triggered
+- **Simple**: Clean time-based logic with scene integration
+- **Reliable**: 15-minute timeout balances responsiveness vs efficiency
+- **Maintainable**: Scene changes automatically apply to motion system
             - condition: time
               after: '06:00:00'
               before: '18:00:00'

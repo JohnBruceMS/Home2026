@@ -1,136 +1,49 @@
-- id: '1624577180319'
-  alias: Office light off
-  description: ''
+- id: '1735519800000'
+  alias: Office Smart Motion - Work & Gaming Modes
+  description: 'Scene-based motion: Work mode 6am-6pm, Gaming mode 6pm-6am'
   trigger:
-  - type: not_occupied
-    platform: device
-    device_id: 156202b790898fe051ab2f6fbc37b507
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 20
-      seconds: 0
-      milliseconds: 0
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: light.office_spot_lights
+      state: 'off'
+  action:
+    - choose:
+        # Work hours (6am-6pm) - office_work_mode
+        - conditions:
+            - condition: time
+              after: '06:00:00'
+              before: '18:00:00'
+          sequence:
+            - service: scene.turn_on
+              target:
+                entity_id: scene.office_work_mode
+        # Gaming hours (6pm-6am) - office_gaming_mode  
+        - conditions:
+            - condition: time
+              after: '18:00:00'
+              before: '06:00:00'
+          sequence:
+            - service: scene.turn_on
+              target:
+                entity_id: scene.office_gaming_mode
+  mode: single
+- id: '1735519800001'
+  alias: Office Motion Off - 15 Minute Timer
+  description: 'Turn off office lights after 15 minutes of no motion'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+      to: 'off'
+      for:
+        minutes: 15
   condition: []
   action:
-  - type: turn_off
-    device_id: aaccd7e95b10b07509a90d9bfb6230f2
-    entity_id: light.office_spot_lights
-    domain: light
-  - type: turn_off
-    device_id: 429e3ba982e2ac9a10305de4f60f458a
-    entity_id: light.office_stand
-    domain: light
-  - type: turn_off
-    device_id: 54a28a8905b8281c561cff5a9f64667c
-    entity_id: light.wall
-    domain: light
-  mode: single
-- id: '1624577423967'
-  alias: Humid
-  description: ''
-  trigger:
-  - platform: time_pattern
-    hours: '4'
-  condition:
-  - type: is_humidity
-    condition: device
-    device_id: 67911f3a0dd96a6d383912dcb740472f
-    entity_id: sensor.lumi_lumi_weather_humidity
-    domain: sensor
-    above: 55
-  action:
-  - service: notify.mobile_app_sm_n986u
-    data:
-      message: 'Humid at bookshelf '
-      title: Humid
-  mode: single
-- id: '1735444800000'
-  alias: Patio Grill / Max Scene
-  description: 'Button 3: Activate max grilling brightness palette'
-  trigger:
-  - platform: state
-    entity_id: event.hall_switch_button_3
-  condition: []
-  action:
-  - service: scene.turn_on
-    target:
-      entity_id: scene.patio_grill_max
-  mode: single
-- id: '1625582030181'
-  alias: Office Light On
-  description: ''
-  trigger:
-  - type: occupied
-    platform: device
-    device_id: 156202b790898fe051ab2f6fbc37b507
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
-    domain: binary_sensor
-  condition:
-  - condition: device
-    type: is_off
-    device_id: aaccd7e95b10b07509a90d9bfb6230f2
-    entity_id: light.office_spot_lights
-    domain: light
-  action:
-  - choose:
-    - conditions:
-      - condition: time
-        before: '19:00:00'
-        after: 03:00:00
-        weekday:
-        - sat
-        - fri
-        - thu
-        - wed
-        - tue
-        - mon
-        - sun
-      sequence:
-      - type: turn_on
-        device_id: aaccd7e95b10b07509a90d9bfb6230f2
-        entity_id: light.office_spot_lights
-        domain: light
-        brightness_pct: 75
-      - type: turn_on
-        device_id: 429e3ba982e2ac9a10305de4f60f458a
-        entity_id: light.office_stand
-        domain: light
-        brightness_pct: 100
-      - type: turn_on
-        device_id: 54a28a8905b8281c561cff5a9f64667c
-        entity_id: light.wall
-        domain: light
-        brightness_pct: 100
-    - conditions:
-      - condition: time
-        after: '19:00:00'
-        before: 03:00:00
-        weekday:
-        - sun
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-        - sat
-      sequence:
-      - type: turn_on
-        device_id: aaccd7e95b10b07509a90d9bfb6230f2
-        entity_id: light.office_spot_lights
-        domain: light
-        brightness_pct: 15
-      - type: turn_on
-        device_id: 429e3ba982e2ac9a10305de4f60f458a
-        entity_id: light.office_stand
-        domain: light
-        brightness_pct: 25
-      - type: turn_on
-        device_id: 54a28a8905b8281c561cff5a9f64667c
-        entity_id: light.wall
-        domain: light
-        brightness_pct: 25
+    - service: scene.turn_on
+      target:
+        entity_id: scene.office_off
   mode: single
 - id: '1632860926294'
   alias: Patio Florida Dimmed Scene

@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "title": "Overlook",
+      "views": [
+        {
+          "path": "default_view",
+          "title": "Home",
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                "light.bedroom1"
+              ],
+              "title": "Bedroom"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "light.hall_color",
+                  "name": "Color"
+                },
+                {
+                  "entity": "light.hall_white",
+                  "name": "White"
+                }
+              ],
+              "title": "Hall"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "light.wall",
+                "light.julia"
+              ],
+              "title": "Julia's room"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "light.old_color_2",
+                "light.fireplace_white_2",
+                "light.stand_color_r",
+                "light.fireplace_white_right",
+                "light.desk_light"
+              ],
+              "title": "Living"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "light.living_room_main_lights",
+                "light.living_room_accent_lights"
+              ],
+              "title": "Living Room"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "sensor.lumi_lumi_weather_humidity",
+                "sensor.lumi_lumi_weather_pressure",
+                "sensor.lumi_lumi_weather_temperature"
+              ],
+              "title": "Master Bath"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "light.office_stand",
+                "light.office_spot_lights",
+                "binary_sensor.lumi_lumi_sensor_motion_aq2_0b30c506_ias_zone",
+                "binary_sensor.lumi_lumi_sensor_motion_aq2_0b30c506_occupancy",
+                "sensor.lumi_lumi_sensor_motion_aq2_illuminance"
+              ],
+              "title": "Office"
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.den"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "binary_sensor.rpi_power_status",
+                "binary_sensor.updater"
+              ],
+              "title": "Binary sensor"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "input_number.test"
+              ],
+              "title": "Input number"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "light.front_door_left",
+                "light.front_door_right",
+                "light.office_white_1",
+                "light.office_white_2",
+                "light.old_white"
+              ],
+              "title": "Light"
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.living_room"
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.living_room_zone2"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "person.john_bruce"
+              ],
+              "title": "Person"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "scene.tv"
+              ],
+              "title": "Scene"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "script.1624396292473"
+              ],
+              "title": "Script"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "sensor.fios_router_b_received",
+                "sensor.fios_router_b_sent",
+                "sensor.fios_router_kib_s_received",
+                "sensor.fios_router_kib_s_sent",
+                "sensor.fios_router_packets_received",
+                "sensor.fios_router_packets_sent",
+                "sensor.fios_router_packets_s_received",
+                "sensor.fios_router_packets_s_sent",
+                "sensor.pushbullet_body"
+              ],
+              "title": "Sensor"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "sun.sun"
+              ],
+              "title": "Sun"
+            },
+            {
+              "type": "weather-forecast",
+              "entity": "weather.overlook",
+              "show_forecast": false
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "sensor.lumi_lumi_weather_3942f806_humidity",
+                "sensor.lumi_lumi_weather_3942f806_pressure",
+                "sensor.lumi_lumi_weather_3942f806_temperature"
+              ]
+            },
+            {
+              "type": "button",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "entity": "switch.patio_pathway_lights"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "light.patio_2"
+              ]
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.tv"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_dashboards",
+  "data": {
+    "items": [
+      {
+        "require_admin": false,
+        "show_in_sidebar": true,
+        "title": "Overlook1",
+        "url_path": "lovelace-overlook1",
+        "mode": "storage",
+        "id": "lovelace_overlook1"
+      },
+      {
+        "require_admin": false,
+        "show_in_sidebar": true,
+        "title": "Lynn",
+        "url_path": "lovelace-lynn",
+        "mode": "storage",
+        "id": "lovelace_lynn"
+      },
+      {
+        "id": "map",
+        "icon": "mdi:map",
+        "title": "Map",
+        "url_path": "map",
+        "show_in_sidebar": true,
+        "require_admin": false,
+        "mode": "storage"
+      }
+    ]
+  }
+}

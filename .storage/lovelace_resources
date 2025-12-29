@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "url": "/hacsfiles/banner-card/banner-card.js?hacstag=1867657040130",
+        "type": "module",
+        "id": "c2f3673a6deb4f2096b78487e2fc613c"
+      },
+      {
+        "url": "/hacsfiles/weather-card/weather-card.js?hacstag=192732636150",
+        "type": "module",
+        "id": "a4000bd7e7024d62a86d44b0d13e9abd"
+      },
+      {
+        "url": "/hacsfiles/light-entity-card/light-entity-card.js?hacstag=168744428613",
+        "type": "module",
+        "id": "e274fdb72c434c818054d26dc43d2b54"
+      }
+    ]
+  }
+}
