@@ -125,3 +125,14 @@
 - Fix or remove the unavailable DEWENWILS switch entities in `Patio Bright` so the scene reliably controls the flood/patio power feed.【F:scenes.yaml†L219-L244】
 - Add the proposed palette scenes to `scenes.yaml`, expose them in a Lovelace Scene card, and wire them to button, Ring, and geo triggers as outlined above.
 - Standardize on `patio_color_lights` for color effects and `group.patio_lights` for whole-area on/off to simplify cards and automations.【F:groups.yaml†L2-L16】
+
+## How to Test the New Patio Palettes in Home Assistant
+1. **Reload scenes (if you edited YAML):** In *Developer Tools → YAML*, run *Scene: Reload* (or restart HA) so the new palettes appear.
+2. **Verify entities resolve:** Open *Developer Tools → States* and confirm the scene entities (e.g., `scene.patio_all_off`, `scene.patio_normal`, `scene.patio_grill_max`, `scene.patio_florida_dimmed`) exist and are not `unknown`.
+3. **One-tap activation:** In *Overview*, add a *Scene* card (or Mushroom Chips) with the four patio palettes and tap each one to ensure lights change on/off/brightness/color as expected.
+4. **Spot-check attributes:**
+   - Hue bulbs: confirm `state:on`, `brightness` ≈ 75% for *Normal*, 100% for *Grill/Max*, and amber/red tone for *Florida Dimmed*.
+   - Pathway switch: on for all except *All Off*.
+   - Flood: off for *All Off/Normal/Florida Dimmed*; on for *Grill/Max*.
+5. **Automation dry-runs:** From *Developer Tools → Services*, call `scene.turn_on` with each scene target. Watch the *Logbook* to confirm no service errors about unsupported attributes (especially on non-Hue devices).
+6. **Button/time triggers (optional):** If you map these palettes to existing button or time automations, temporarily set the trigger to *Run* in the Automation editor to confirm they activate the right scene and return to the expected default afterward.
