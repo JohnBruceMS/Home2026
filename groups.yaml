@@ -1,16 +1,15 @@
-# Main patio light group
+# Main patio light group (pathway + both Hue bulbs + flood)
 patio_lights:
   name: All Patio
   entities:
     - switch.patio_pathway_lights
-    - light.hue_color_lamp_1
-    - light.bedroom1
-    - light.hue_outdoor_wall_1
+    - light.hue_color_lamp_1    # Patio L (Hue color)
+    - light.bedroom1            # Patio R (Hue color)
+    - light.hue_outdoor_wall_1  # Patio flood
 
-# Color-capable lights only (for scenes)
+# Color-capable lights only (for scenes and palettes)
 patio_color_lights:
   name: Patio Color Lights
   entities:
     - light.hue_color_lamp_1
     - light.bedroom1
-    - light.hue_outdoor_wall_1
