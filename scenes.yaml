@@ -274,3 +274,72 @@
     light.hue_outdoor_wall_1:
       state: 'off'
   icon: mdi:lightbulb-off
+
+- id: patio_all_off
+  name: Patio All Off
+  entities:
+    switch.patio_pathway_lights:
+      state: 'off'
+    light.hue_color_lamp_1:
+      state: 'off'
+    light.bedroom1:
+      state: 'off'
+    light.hue_outdoor_wall_1:
+      state: 'off'
+  icon: mdi:lightbulb-off-outline
+
+- id: patio_normal
+  name: Patio Normal
+  entities:
+    switch.patio_pathway_lights:
+      state: 'on'
+    light.hue_color_lamp_1:
+      state: 'on'
+      brightness: 191  # ~75%
+      color_temp: 370  # warm tint
+    light.bedroom1:
+      state: 'on'
+      brightness: 191  # ~75%
+      color_temp: 370  # warm tint
+    light.hue_outdoor_wall_1:
+      state: 'off'
+  icon: mdi:lightbulb-on-outline
+
+- id: patio_grill_max
+  name: Patio Grill / Max
+  entities:
+    switch.patio_pathway_lights:
+      state: 'on'
+    light.hue_color_lamp_1:
+      state: 'on'
+      brightness: 255
+      color_temp: 360  # warm white
+    light.bedroom1:
+      state: 'on'
+      brightness: 255
+      color_temp: 360  # warm white
+    light.hue_outdoor_wall_1:
+      state: 'on'
+      brightness: 255
+  icon: mdi:grill
+
+- id: patio_florida_dimmed
+  name: Patio Florida Dimmed
+  entities:
+    switch.patio_pathway_lights:
+      state: 'on'
+    light.hue_color_lamp_1:
+      state: 'on'
+      brightness: 120
+      xy_color:
+      - 0.66
+      - 0.34
+    light.bedroom1:
+      state: 'on'
+      brightness: 120
+      xy_color:
+      - 0.66
+      - 0.34
+    light.hue_outdoor_wall_1:
+      state: 'off'
+  icon: mdi:turtle
