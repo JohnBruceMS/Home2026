@@ -126,6 +126,12 @@
 - Add the proposed palette scenes to `scenes.yaml`, expose them in a Lovelace Scene card, and wire them to button, Ring, and geo triggers as outlined above.
 - Standardize on `patio_color_lights` for color effects and `group.patio_lights` for whole-area on/off to simplify cards and automations.【F:groups.yaml†L2-L16】
 
+## Clean Up Legacy Patio Scenes and Prevent Hue Scene Spam
+1. **Remove duplicate/older patio scenes:** Delete the legacy `patio_evening`, `patio_bright`, `patio_dim`, and `patio_off` entries from HA (already removed from YAML here) so Lovelace only shows the four palettes you want going forward.【F:scenes.yaml†L171-L237】
+2. **Retarget button automations:** Point the hall switch buttons at the new palettes—Button 1 → `scene.patio_all_off`, Button 2 → `scene.patio_florida_dimmed`, Button 3 → `scene.patio_grill_max`—so the UI and hardware triggers stay in sync.【F:automations.yaml†L55-L95】
+3. **Stop importing Hue-native scenes:** In *Settings → Devices & Services → Philips Hue → Configure*, toggle off **Allow Hue scenes** (or equivalent) to prevent extra Hue-provided scenes from cluttering HA. If you prefer to keep it on, manually delete unwanted Hue scenes in the Hue app so they stop appearing in HA on the next sync.
+4. **Dashboard tidy-up:** Remove any Lovelace Scene or Button cards that still reference the deleted legacy scenes and replace them with the new four-scene set.
+
 ## How to Test the New Patio Palettes in Home Assistant
 1. **Reload scenes (if you edited YAML):** In *Developer Tools → YAML*, run *Scene: Reload* (or restart HA) so the new palettes appear.
 2. **Verify entities resolve:** Open *Developer Tools → States* and confirm the scene entities (e.g., `scene.patio_all_off`, `scene.patio_normal`, `scene.patio_grill_max`, `scene.patio_florida_dimmed`) exist and are not `unknown`.
