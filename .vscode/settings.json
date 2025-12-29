@@ -1,0 +1,62 @@
+{
+    // Git settings for better sync
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.postCommitCommand": "none",
+    "git.openRepositoryInParentFolders": "always",
+    
+    // File associations for Home Assistant
+    "files.associations": {
+        "*.yaml": "home-assistant",
+        "compose.yml": "yaml",
+        "compose.yaml": "yaml",
+        "compose.*.yml": "yaml",
+        "compose.*.yaml": "yaml",
+        "docker-compose.yml": "yaml",
+        "docker-compose.yaml": "yaml",
+        "docker-compose.*.yml": "yaml",
+        "docker-compose.*.yaml": "yaml",
+        "esphome/**/*.yml": "esphome",
+        "esphome/**/*.yaml": "esphome"
+    },
+    
+    // Home Assistant extension settings
+    "vscode-home-assistant.ignoreCertificates": true,
+    
+    // Auto-save settings for config files
+    "files.autoSave": "onFocusChange",
+    
+    // YAML formatting
+    "yaml.format.enable": true,
+    "yaml.validate": true,
+    
+    // Explorer settings
+    "explorer.confirmDelete": true,
+    "explorer.confirmDragAndDrop": true,
+    
+    // Hide unwanted files and directories from VS Code explorer
+    "files.exclude": {
+        "**/.storage": true,
+        "**/.cloud": true,
+        "**/deps": true,
+        "**/tts": true,
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        "**/*.db": true,
+        "**/*.db-*": true,
+        "**/*.log": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/home-assistant_v2.db*": true,
+        "**/zigbee.db*": true,
+        "**/lutron_caseta-*.pem": true,
+        "**/.HA_VERSION": true
+    },
+    
+    // Git user settings (ensures correct username for commits)
+    "git.user.name": "johnbrucems",
+    
+    // Terminal settings
+    "terminal.integrated.defaultProfile.windows": "PowerShell"
+}

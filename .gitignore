@@ -65,7 +65,9 @@ Thumbs.db
 *.swo
 
 # IDE files (keep these for consistency)
-.vscode/settings.json
+# Allow specific VS Code config for HA development
+!.vscode/tasks.json
+!.vscode/settings.json
 .vscode/launch.json
 .idea/
 
