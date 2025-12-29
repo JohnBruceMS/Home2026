@@ -6,26 +6,57 @@ ip_bans.yaml
 *.log.*
 *.db
 *.db-*
+*.db-shm
+*.db-wal
 .uuid
 .HA_VERSION
-home-assistant.log*
+home-assistant*
+lutron_caseta-*.pem
+zigbee.db*
 
-# Home Assistant directories that shouldn't be tracked
+# Home Assistant runtime directories (not config)
 .storage/
 .cloud/
 deps/
 tts/
+.backups/
+
+# Python compiled files and cache
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 
-# Backup directories
-.backups/
-*.backup
+# Binary and compiled files
+*.dll
+*.exe
+*.bin
+*.so
+*.dylib
 
-# Temporary files
+# Large media and cache files
+*.mp3
+*.wav
+*.mp4
+*.avi
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.webp
+# Exception: Allow small config-related images
+!www/icons/
+!themes/*/
+
+# Temporary and backup files
 *.tmp
 *.temp
+*.backup
+*.bak
+*.old
+*~
 
 # OS generated files
 .DS_Store
@@ -33,9 +64,22 @@ Thumbs.db
 *.swp
 *.swo
 
-# IDE files
-.vscode/
+# IDE files (keep these for consistency)
+# Allow specific VS Code config for HA development
+!.vscode/tasks.json
+!.vscode/settings.json
+.vscode/launch.json
 .idea/
 
-# Custom sensitive files (add your own)
-# my-sensitive-file.yaml
+# Home Assistant specific excludes
+# Focus on config files only - exclude runtime data
+home-assistant_v2.db*
+options.xml
+entity_registry.yaml
+device_registry.yaml
+area_registry.yaml
+scene.yaml
+
+# Custom sensitive files
+# Add your own sensitive files here
+# example: my-custom-secrets.yaml
