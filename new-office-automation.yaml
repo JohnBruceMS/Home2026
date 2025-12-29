@@ -1,0 +1,59 @@
+# New Office Motion Automation (Scene-Based)
+# Replace the old complex Office Light On/Off automations
+
+# Motion detected - choose scene based on time
+- id: office_smart_motion_on
+  alias: Office Smart Motion On  
+  description: Motion-activated scene selection based on time of day
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+      to: 'on'
+  condition:
+    # Only trigger if lights are currently off
+    - condition: state
+      entity_id: light.office_spot_lights
+      state: 'off'
+  action:
+    - choose:
+        # Work hours (6am-6pm) - Full work lighting
+        - conditions:
+            - condition: time
+              after: '06:00:00'
+              before: '18:00:00'
+          sequence:
+            - service: scene.turn_on
+              target:
+                entity_id: scene.office_work_mode
+        # Evening gaming (6pm-11pm) - Gaming ambiance  
+        - conditions:
+            - condition: time
+              after: '18:00:00'
+              before: '23:00:00'
+          sequence:
+            - service: scene.turn_on
+              target:
+                entity_id: scene.office_gaming_mode
+        # Late night (11pm-6am) - Minimal TV lighting
+        default:
+          - service: scene.turn_on
+            target:
+              entity_id: scene.office_tv_mode
+  mode: single
+
+# No motion detected - turn off after 20 minutes
+- id: office_smart_motion_off
+  alias: Office Smart Motion Off
+  description: Turn off office lights after 20 minutes of no motion
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+      to: 'off'
+      for:
+        minutes: 20
+  condition: []
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.office_off
+  mode: single

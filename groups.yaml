@@ -13,3 +13,27 @@ patio_color_lights:
   entities:
     - light.hue_color_lamp_1
     - light.bedroom1
+
+# All office lighting devices
+office_lights:
+  name: All Office
+  entities:
+    - light.office_spot_lights
+    - light.office_stand
+    - light.wall
+
+# Color-capable office lights for advanced scenes
+office_color_lights:
+  name: Office Color Lights
+  entities:
+    - light.office_stand
+    - light.wall
+
+# Complete office environment control (lights + shade)
+office_environment:
+  name: Office Environment
+  entities:
+    - light.office_spot_lights
+    - light.office_stand  
+    - light.wall
+    - cover.office_shade

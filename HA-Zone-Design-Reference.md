@@ -120,9 +120,128 @@ patio_color_lights:
 
 ---
 
+## **OFFICE ZONE** ✅ *[Implementation in Progress]*
+
+### **Layer 1: Devices**
+| Device | Entity ID | Type | Capabilities |
+|--------|-----------|------|--------------|  
+| Spot Lights | `light.office_spot_lights` | Track Lighting | Brightness only |
+| Desk Stand | `light.office_stand` | Hue Color | RGB + Brightness + Color Temp |
+| Wall Light | `light.wall` | Hue Color | RGB + Brightness + Color Temp |
+| Office Shade | `cover.office_shade` | Lutron Caséta Shade | Position control (open/close/%) |
+| Motion Sensor | `binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy` | Xiaomi Motion | Motion detection |
+| Hue Group | `light.office` | Hue Room Group | Controls stand + wall together |
+
+### **Layer 2: Groups** 📍*[groups.yaml - ✅ UPDATED]*
+```yaml
+# All office lighting devices
+office_lights:
+  name: All Office
+  entities:
+    - light.office_spot_lights
+    - light.office_stand
+    - light.wall
+
+# Color-capable lights for advanced scenes
+office_color_lights:
+  name: Office Color Lights
+  entities:
+    - light.office_stand
+    - light.wall
+
+# Complete environment control (lights + shade)
+office_environment:
+  name: Office Environment
+  entities:
+    - light.office_spot_lights
+    - light.office_stand  
+    - light.wall
+    - cover.office_shade
+```
+
+### **Layer 3: Scenes** 📍*[scenes.yaml - ✅ UPDATED]*
+
+**Voice-Friendly Scene Design Based on Actual Use Cases:**
+
+| Scene ID | Voice Name | Use Case | Spot Lights | Desk Stand | Wall Light |
+|----------|------------|----------|-------------|------------|------------|
+| `office_off` | "Office Off" | Complete shutdown | OFF | OFF | OFF |
+| `office_work_mode` | "Office Work Mode" | Productive work | **100% primary** | 100% warm white | 100% warm white |
+| `office_gaming_mode` | "Office Gaming Mode" | Gaming ambiance | **OFF** | 70% **orange tint** | 70% **orange tint** |
+| `office_tv_mode` | "Office TV Mode" | TV watching | **OFF** | 50% **orange tint** | 50% **orange tint** |
+
+**Design Philosophy:**
+- **Work Mode**: Spot lights provide primary task lighting + Hue devices complement with warm bright
+- **Gaming/TV Modes**: No spot lights + Orange ambient lighting for entertainment
+- **Voice Commands**: "Alexa, turn on office work mode" / "Alexa, activate office gaming mode"
+
+### **Layer 4: Automation** 📍*[automations.yaml - 🔄 NEEDS REDESIGN]*
+
+**Current State**: Basic motion detection with time-based brightness (too complex)
+
+#### **Proposed Smart Motion Automation**
+**Time-Aware Scene Selection:**
+- **Work Hours (6am-6pm)** → Motion triggers `scene.office_work_mode`
+- **Entertainment Hours (6pm-6am)** → Motion triggers `scene.office_gaming_mode` 
+- **Late Night (11pm-6am)** → Motion triggers `scene.office_tv_mode` (minimal lighting)
+- **No Motion (20 min)** → `scene.office_off`
+
+**Simplified Automation Pattern:**
+```yaml
+# Replace complex existing automation with scene-based approach
+- alias: "Office Smart Motion"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+      to: 'on'
+  action:
+    - choose:
+        # Work hours - full work lighting
+        - conditions:
+            - condition: time
+              after: '06:00:00'
+              before: '18:00:00'
+          sequence:
+            - service: scene.turn_on
+              target:
+                entity_id: scene.office_work_mode
+        # Evening gaming - ambient lighting  
+        - conditions:
+            - condition: time
+              after: '18:00:00'
+              before: '23:00:00'
+          sequence:
+            - service: scene.turn_on
+              target:
+                entity_id: scene.office_gaming_mode
+        # Late night - minimal TV lighting
+        default:
+          - service: scene.turn_on
+            target:
+              entity_id: scene.office_tv_mode
+```
+
+### **Layer 5: Interfaces**
+
+#### **Physical Control** 🔄 *(Stream Deck Ready)*
+- Stream Deck with 4+ scene buttons
+- Individual wall switches for each device
+- Motion sensor for automatic control
+
+#### **Dashboard/UI** ✅
+- Individual device controls available
+- Scene cards needed for new clean scenes
+
+#### **Voice Control** ✅
+- "Alexa, turn on office work"
+- "Alexa, activate office focus mode"
+- "Alexa, turn off office lights"
+
+---
+
 ## **ZONE DESIGN TEMPLATE**
 
-Use this template for implementing **3-4 remaining zones**:
+Use this template for implementing **2-3 remaining zones**:
 
 ### **Step 1: Device Inventory**
 ```yaml
@@ -247,7 +366,7 @@ Use this template for implementing **3-4 remaining zones**:
 
 ## **FUTURE ZONE TARGETS**
 
-1. **Office Zone** - Desk lighting + ambient + spot lights
+1. **Office Zone** - ✅ *In Progress* - Desk lighting + ambient + spot lights + Stream Deck control
 2. **Living Room Zone** - Entertainment + ambient + task lighting  
 3. **Bedroom Zone** - Wake/sleep cycles + reading + security
 4. **Kitchen Zone** - Task + ambient + cabinet lighting
