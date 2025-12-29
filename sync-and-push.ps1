@@ -24,6 +24,16 @@ function Write-Error-Custom {
 
 Write-Info "Starting Home Assistant configuration sync and push"
 
+# Step 0: Ensure correct Git user is set
+Write-Info "Checking Git configuration..."
+$currentUser = git config user.name
+if ($currentUser -ne "johnbrucems") {
+    Write-Info "Setting Git user.name to 'johnbrucems'"
+    if (-not $DryRun) {
+        git config user.name "johnbrucems"
+    }
+}
+
 # Step 1: Pull latest config from Home Assistant
 Write-Info "Pulling latest configuration from Home Assistant..."
 if (-not $DryRun) {
