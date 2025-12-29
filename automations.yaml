@@ -46,21 +46,6 @@
       message: 'Humid at bookshelf '
       title: Humid
   mode: single
-- id: '1624721071404'
-  alias: Florida Mood Patio
-  description: 'Button 4: Net Radio activation'
-  trigger:
-  - platform: state
-    entity_id: event.hall_switch_button_4
-  condition:
-  - condition: time
-    after: 07:00
-    before: '23:00'
-  action:
-  - service: media_player.select_source
-    data:
-      source: Net Radio
-  mode: single
 - id: '1735444800000'
   alias: Patio Grill / Max Scene
   description: 'Button 3: Activate max grilling brightness palette'
@@ -207,7 +192,7 @@
   mode: single
 - id: '1759704238755'
   alias: Patio lights sunset
-  description: 'Turn on all patio lights 15 minutes before sunset'
+  description: Turn on all patio lights 15 minutes before sunset
   triggers:
   - trigger: sun
     event: sunset
@@ -220,7 +205,7 @@
   mode: single
 - id: '1759704308061'
   alias: Turn off patio lights
-  description: 'Turn off all patio lights at 11:30 PM'
+  description: Turn off all patio lights at 11:30 PM
   triggers:
   - trigger: time
     at: '23:30:00'
@@ -229,4 +214,22 @@
   - service: homeassistant.turn_off
     target:
       entity_id: group.patio_lights
+  mode: single
+- id: '1767029546967'
+  alias: Patio Normal A
+  description: ''
+  triggers:
+  - device_id: 70d6f79104a68cafba31a63ea504261e
+    domain: hue
+    type: initial_press
+    subtype: 4
+    unique_id: c814bf53-7a3d-4c2c-8466-57d5ef2404c7
+    trigger: device
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: scene.patio_normal
   mode: single
